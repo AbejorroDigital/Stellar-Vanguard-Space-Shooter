@@ -1,0 +1,142 @@
+/* ============================================================
+   STELLAR VANGUARD — Premium Space Shooter Styles
+   ============================================================ */
+
+/* ---- Reset & Base ---- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-bg-deep: #030710;
+    --color-bg-mid: #0a0e1a;
+    --color-accent-cyan: #00e5ff;
+    --color-accent-magenta: #e040fb;
+    --color-accent-gold: #ffd740;
+    --color-text: #e0e6f0;
+    --color-text-dim: #7a8ba8;
+    --color-danger: #ff3d3d;
+    --color-success: #00e676;
+    --font-game: 'ZenDots', 'Orbitron', 'Segoe UI', monospace;
+    --glow-cyan: 0 0 12px rgba(0, 229, 255, 0.5), 0 0 40px rgba(0, 229, 255, 0.15);
+    --glow-magenta: 0 0 12px rgba(224, 64, 251, 0.5), 0 0 40px rgba(224, 64, 251, 0.15);
+    --glow-gold: 0 0 12px rgba(255, 215, 64, 0.5), 0 0 40px rgba(255, 215, 64, 0.15);
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--color-bg-deep);
+    font-family: var(--font-game);
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ---- Game Container ---- */
+#game-container {
+    position: relative;
+    width: min(1280px, 100vw, calc(100vh * 16 / 9));
+    height: min(720px, 100vh, calc(100vw * 9 / 16));
+    aspect-ratio: 16 / 9;
+    flex-shrink: 0;
+    background: var(--color-bg-deep);
+    border-radius: 8px;
+    box-shadow: 
+        0 0 50px rgba(0, 229, 255, 0.18),
+        0 0 100px rgba(0, 0, 0, 0.85),
+        inset 0 0 120px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+}
+
+#game-container canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    image-rendering: auto;
+}
+
+/* ---- Loading Screen ---- */
+#loading-screen {
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at 50% 40%, #0d1428 0%, var(--color-bg-deep) 70%);
+}
+
+.loading-title {
+    font-size: 42px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--color-accent-cyan);
+    text-shadow: var(--glow-cyan);
+    animation: titlePulse 2s ease-in-out infinite alternate;
+    margin-bottom: 12px;
+}
+
+.loading-subtitle {
+    font-size: 14px;
+    color: var(--color-text-dim);
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+.loading-bar-container {
+    width: 360px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.loading-bar-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--color-accent-cyan), var(--color-accent-magenta));
+    box-shadow: 0 0 14px rgba(0, 229, 255, 0.5);
+    transition: width 0.3s ease;
+}
+
+.loading-percent {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--color-text-dim);
+    letter-spacing: 2px;
+}
+
+/* ---- Animations ---- */
+@keyframes titlePulse {
+    0% {
+        text-shadow: 0 0 8px rgba(0, 229, 255, 0.3), 0 0 30px rgba(0, 229, 255, 0.1);
+        transform: scale(1);
+    }
+    100% {
+        text-shadow: 0 0 20px rgba(0, 229, 255, 0.7), 0 0 60px rgba(0, 229, 255, 0.25);
+        transform: scale(1.02);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
